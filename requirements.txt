@@ -1,0 +1,7 @@
+plotly
+streamlit
+mongomock
+pymongo
+pandas
+requests
+Flask
