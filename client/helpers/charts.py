@@ -74,13 +74,13 @@ def display_map(st, df):
 
         # Zoom level calculation (inverse relationship)
         if max_range < 0.01:
-            zoom = 14
+            zoom = 17
         elif max_range < 0.05:
-            zoom = 12
+            zoom = 14
         elif max_range < 0.1:
-            zoom = 11
+            zoom = 12
         else:
-            zoom = 10
+            zoom = 11
 
         fig = px.scatter_mapbox(
             df,

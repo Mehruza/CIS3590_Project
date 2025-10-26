@@ -205,3 +205,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+#project zip/ other zip files
+
+CIS3590_Project.zip
+
+#demo vide / other video files
+
+demo.mp4
