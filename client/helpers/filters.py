@@ -27,4 +27,15 @@ def display_filters(st):
     skip = st.sidebar.number_input("Skip rows", min_value=0, value=0, step=100)
     st.divider()
 
-    return start_date, end_date, min_temp, max_temp, min_odo, max_odo, min_sal, max_sal, limit, skip,
+    return {
+        "start": start_date,
+        "end": end_date,
+        "min_temp": min_temp,
+        "max_temp": max_temp,
+        "min_odo": min_odo,
+        "max_odo": max_odo,
+        "min_sal": min_sal,
+        "max_sal": max_sal,
+        "limit": limit,
+        "skip": skip
+    }

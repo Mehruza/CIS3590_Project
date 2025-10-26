@@ -54,11 +54,31 @@ print("Total rows remaining ", len(cleaned_data), "\n")
 # Saving cleaned data
 cleaned_data.to_json(os.path.join(cwd, "cleaned datasets",
                      "consolidated.json"), orient="records", indent=2)
-exit(0)
+
+# Save cleaned data to separase csv files
+print("Regenerating cleaned CSV files by date...")
+
+# Map date values to filenames
+date_to_filename = {
+    "10/21/21": "2021-oct21.csv",
+    "12/16/21": "2021-dec16.csv",
+    "10/7/22": "2022-oct7.csv",
+    "11/16/22": "2022-nov16.csv"
+}
+
+# Group by date and save to cleaned datasets folder
+for date_value, filename in date_to_filename.items():
+    date_filtered = cleaned_data[cleaned_data['Date'] == date_value]
+    output_path = os.path.join(cwd, "cleaned datasets", filename)
+    date_filtered.to_csv(output_path, index=False)
+    print(f"  Saved {len(date_filtered)} rows to cleaned datasets/{filename}")
+   
+
+
 # DB stuff
 db_client = mongo.connect_to_db()
 db = db_client["water_quality_data"]
-asv_1 = db["all"]
+asv_1 = db["asv_1"]
 
 data_as_dict = cleaned_data.to_dict(orient='records')
 if asv_1.count_documents({}) <= 1:
