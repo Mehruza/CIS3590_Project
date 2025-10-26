@@ -21,7 +21,7 @@ def display_salinity_histogram(st, df):
 
         st.plotly_chart(fig, use_container_width=True)
     else:
-        st.warning("Salinity column not found in data")
+        st.warning("No data selected or Salinity column not found in data")
 
 
 def display_temp_salinity_scatter(st, df):
@@ -51,7 +51,7 @@ def display_temp_salinity_scatter(st, df):
 
         st.plotly_chart(fig, use_container_width=True)
     else:
-        st.warning("Required columns (Temperature, Salinity, ODO) not found in data")
+        st.warning("No data selected or required columns (Temperature, Salinity, ODO) not found in data")
 
 
 def display_map(st, df):
@@ -103,4 +103,4 @@ def display_map(st, df):
 
         st.plotly_chart(fig, use_container_width=True)
     else:
-        st.warning("Latitude and Longitude columns not found in data")
+        st.warning("No data selected or Latitude and Longitude columns not found in data")

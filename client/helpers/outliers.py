@@ -1,5 +1,7 @@
 import pandas as pd
+from requests.exceptions import ConnectionError
 from CIS3590_Project.client.helpers.datas import get_outliers
+from CIS3590_Project.client.helpers.utils import NUMERICAL_COLUMNS
 
 def display_outliers(st):
     """Display outliers detection interface"""
@@ -11,7 +13,7 @@ def display_outliers(st):
     with col1:
         field = st.selectbox(
             "Select Field",
-            ["temperature", "salinity", "odo"],
+            NUMERICAL_COLUMNS,
             key="outlier_field"
         )
 
@@ -41,23 +43,26 @@ def display_outliers(st):
         if z is not None:
             params["z"] = z
 
-        response = get_outliers(params)
+        try:
+            response = get_outliers(params)
 
-        if response.status_code == 200:
-            data = response.json()
+            if response.status_code == 200:
+                data = response.json()
 
-            st.metric("Outliers Found", data['count'])
-            st.write(f"**Field:** {data['field']}")
-            st.write(f"**Method:** {data['method']}")
-            if data.get('k'):
-                st.write(f"**IQR Multiplier:** {data['k']}")
-            if data.get('z'):
-                st.write(f"**Z-Score Threshold:** {data['z']}")
+                st.metric("Outliers Found", data['count'])
+                st.write(f"**Field:** {data['field']}")
+                st.write(f"**Method:** {data['method']}")
+                if data.get('k'):
+                    st.write(f"**IQR Multiplier:** {data['k']}")
+                if data.get('z'):
+                    st.write(f"**Z-Score Threshold:** {data['z']}")
 
-            if data['count'] > 0:
-                outliers_df = pd.DataFrame(data['outliers'])
-                st.dataframe(outliers_df, use_container_width=True)
+                if data['count'] > 0:
+                    outliers_df = pd.DataFrame(data['outliers'])
+                    st.dataframe(outliers_df, use_container_width=True)
+                else:
+                    st.info("No outliers detected with current parameters")
             else:
-                st.info("No outliers detected with current parameters")
-        else:
-            st.error(f"Error detecting outliers: {response.status_code}")
+                st.error(f"Error detecting outliers: {response.status_code}\n, Message: {response.json()['message']}")
+        except ConnectionError:
+            st.error("⚠️ Unable to connect to the API server. Please ensure the server is running.")
