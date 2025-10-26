@@ -155,6 +155,12 @@ CIS3590_Project/
 
    # For in-memory testing:
    client = mongomock.MongoClient()
+
+   #For a cloud instance of MongoDB, create a MongoDB account, obtain the following values and place them in a .env file in the root directory:
+   MONGO_USER="DB_username"
+   MONGO_PASSWORD="DB_password"
+   MONGO_CLUSTER_URL="cluster url"
+
    ```
 
 ### Running the Project
