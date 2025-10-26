@@ -1,5 +1,5 @@
 import requests
-from  client.helpers.utils import *
+from  helpers.utils import *
 
 def get_observations(params):
     response = requests.get(API_URL+OBSERVATIONS_ENDPOINT, params=params)

@@ -1,6 +1,6 @@
 import pandas as pd
 from requests.exceptions import ConnectionError
-from client.helpers.datas import get_observations
+from helpers.datas import get_observations
 
 def display_observations(st, params):
     #Gotta filter the none values or else 💥

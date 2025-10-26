@@ -1,7 +1,7 @@
 import pandas as pd
 from requests.exceptions import ConnectionError
-from client.helpers.datas import get_outliers
-from client.helpers.utils import NUMERICAL_COLUMNS
+from helpers.datas import get_outliers
+from helpers.utils import NUMERICAL_COLUMNS
 
 def display_outliers(st):
     """Display outliers detection interface"""
