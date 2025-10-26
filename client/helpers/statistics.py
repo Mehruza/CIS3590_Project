@@ -1,6 +1,6 @@
 import pandas as pd
 from requests.exceptions import ConnectionError
-from CIS3590_Project.client.helpers.datas import get_stats
+from client.helpers.datas import get_stats
 
 def display_statistics(st):
     """Display summary statistics from API"""
