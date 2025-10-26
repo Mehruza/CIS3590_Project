@@ -1,0 +1,23 @@
+GET  http://localhost:5050/api/health HTTP/1.1
+
+###
+GET  http://localhost:5050/ HTTP/1.1
+
+###
+
+GET  http://localhost:5050/api/observations
+    ?min_temp=28
+    &max_temp=29
+
+###
+
+GET  http://localhost:5050/api/stats HTTP/1.1
+
+###
+
+GET  http://localhost:5050/api/outliers
+    ?method=iqr
+    &z=4
+    &field=Latitude
+
+###
